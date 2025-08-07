@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Skills Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>WebDev</h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#todo" class="nav-link">To-Do</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav><main class="main-content">
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <h1>Web Development Skills Showcase</h1>
+                <p>Demonstrating HTML forms, CSS layouts, and JavaScript DOM manipulation</p>
+                <button class="cta-button" onclick="scrollToSection('contact')">Get Started</button>
+            </div>
+        </section>
+
+        
+        <section class="section contact-section" id="contact">
+            <div class="container">
+                <h2 class="section-title">Contact Form</h2>
+                <div class="form-container">
+                    <form id="contact-form" class="contact-form" novalidate>
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                            <span class="error-message" id="name-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                            <span class="error-message" id="email-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                            <span class="error-message" id="phone-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option style="color: black;" value="general">General Inquiry</option>
+                                <option style="color: black;"  value="business">Business Proposal</option>
+                                <option style="color: black;"  value="support">Technical Support</option>
+                                <option style="color: black;"  value="feedback">Feedback</option>
+                            </select>
+                            <span class="error-message" id="subject-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <span class="error-message" id="message-error"></span>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <span class="checkmark"></span>
+                                Subscribe to our newsletter
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">
+                            <span id="submit-text">Send Message</span>
+                            <div class="loading-spinner" id="loading-spinner"></div>
+                        </button>
+                    </form>
+                    
+                    <div id="form-success" class="success-message" style="display: none;">
+                        <h3>Thank you!</h3>
+                        <p>Your message has been sent successfully. We'll get back to you soon!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section todo-section" id="todo">
+            <div class="container">
+                <h2 class="section-title">To-Do List</h2>
+                <div class="todo-container">
+                    <div class="todo-input-section">
+                        <input type="text" id="todo-input" placeholder="Add a new task..." maxlength="100">
+                        <button id="add-todo" class="add-button">Add Task</button>
+                    </div>
+                    
+                    <div class="todo-filters">
+                        <button class="filter-button active" data-filter="all">All</button>
+                        <button class="filter-button" data-filter="active">Active</button>
+                        <button class="filter-button" data-filter="completed">Completed</button>
+                    </div>
+                    <ul id="todo-list" class="todo-list"></ul>
+                    <div class="todo-stats">
+                        <span id="task-count">0 tasks remaining</span>
+                        <button id="clear-completed" class="clear-button">Clear Completed</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section gallery-section" id="gallery">
+            <div class="container">
+                <h2 class="section-title">Interactive Image Gallery</h2>
+                <div class="gallery-controls">
+                    <input type="file" id="image-input" accept="image/*" multiple style="display: none;">
+                    <button id="add-images" class="add-button">Add Images</button>
+                    <select id="gallery-filter" class="filter-select">
+                        <option value="all">All Images</option>
+                        <option value="recent">Recent</option>
+                        <option value="favorites">Favorites</option>
+                    </select>
+                </div>
+                
+                <div id="gallery-grid" class="gallery-grid"></div>
+            </div>
+        </section>
+        <section class="section about-section" id="about">
+            <div class="container">
+                <h2 class="section-title">About This Project</h2>
+                <div class="about-content">
+                    <div class="about-card">
+                        <h3>HTML Forms</h3>
+                        <p>Comprehensive contact form with various input types including text, email, tel, select, textarea, and checkbox elements.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>CSS Layouts</h3>
+                        <p>Responsive design using Flexbox for navigation and CSS Grid for content sections, with mobile-first approach.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>JavaScript DOM</h3>
+                        <p>Dynamic functionality including form validation, to-do list management, and interactive image gallery with local storage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <div id="image-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img id="modal-image" src="" alt="">
+            <div class="modal-controls">
+                <button id="favorite-button" class="modal-button">♥</button>
+                <button id="delete-button" class="modal-button">Delete</button>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Web Development Skills Portfolio. Built with HTML, CSS, and JavaScript.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
