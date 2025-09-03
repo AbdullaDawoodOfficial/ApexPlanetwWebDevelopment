@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PixelCraft Studio - Premium digital agency specializing in web development, design, and digital solutions">
+    <meta name="keywords" content="web development, digital agency, portfolio, design, JavaScript, responsive design">
+    <meta name="author" content="PixelCraft Studio">
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.pexels.com">
+    
+    <!-- Critical CSS - inlined for performance -->
+    <style>
+        /* Critical above-the-fold styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3B82F6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <title>PixelCraft Studio - Digital Agency Portfolio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iIzNCODJGNiIvPgo8cGF0aCBkPSJNOSAxMkgxNlYxOUg5VjEyWiIgZmlsbD0id2hpdGUiLz4KPHA+aCBkPSJNMTcgMTJIMjNWMTlIMTdWMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
+    
+    <!-- Main CSS - loaded asynchronously for performance -->
+    <link rel="stylesheet" href="styles/main.css">
+    
+    <!-- Fonts - loaded with display swap for performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loadingScreen">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">PixelCraft</span>
+                <span class="logo-accent">Studio</span>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active" data-section="home">Home</a>
+                <a href="#about" class="nav-link" data-section="about">About</a>
+                <a href="#services" class="nav-link" data-section="services">Services</a>
+                <a href="#portfolio" class="nav-link" data-section="portfolio">Portfolio</a>
+                <a href="#blog" class="nav-link" data-section="blog">Blog</a>
+                <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+            </div>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <canvas id="particleCanvas" class="particle-canvas"></canvas>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line">We Create</span>
+                <span class="title-line">
+                    <span class="typing-text" id="typingText">Amazing Experiences</span>
+                    <span class="cursor">|</span>
+                </span>
+            </h1>
+            <p class="hero-subtitle">Premium digital solutions that drive results and inspire audiences</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('portfolio')">View Our Work</button>
+                <button class="btn btn-outline" onclick="scrollToSection('contact')">Get In Touch</button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About PixelCraft Studio</h2>
+                <p class="section-subtitle">Crafting digital experiences that matter</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>We're passionate about creating exceptional digital experiences</h3>
+                    <p>Founded in 2020, PixelCraft Studio has been at the forefront of digital innovation, helping businesses transform their online presence with cutting-edge web technologies and creative design solutions.</p>
+                    <p>Our team combines technical expertise with creative vision to deliver projects that not only look stunning but perform exceptionally across all devices and platforms.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="150">0</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="98">0</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="5">0</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="24">0</div>
+                            <div class="stat-label">Team Members</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Team collaboration" 
+                         class="lazy-load"
+                         loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Comprehensive digital solutions for modern businesses</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" data-service="web-development">
+                    <div class="service-icon">🚀</div>
+                    <h3 class="service-title">Web Development</h3>
+                    <p class="service-description">Custom websites and web applications built with modern technologies and best practices.</p>
+                    <button class="service-btn">Learn More</button>
+                </div>
+                
+                <div class="service-card" data-service="ui-design">
+                    <div class="service-icon">🎨</div>
+                    <h3 class="service-title">UI/UX Design</h3>
+                    <p class="service-description">Beautiful, intuitive designs that provide exceptional user experiences across all devices.</p>
+                    <button class="service-btn">Learn More</button>
+                </div>
+                
+                <div class="service-card" data-service="ecommerce">
+                    <div class="service-icon">🛒</div>
+                    <h3 class="service-title">E-Commerce Solutions</h3>
+                    <p class="service-description">Complete online stores with payment integration, inventory management, and analytics.</p>
+                    <button class="service-btn">Learn More</button>
+                </div>
+                
+                <div class="service-card" data-service="mobile-apps">
+                    <div class="service-icon">📱</div>
+                    <h3 class="service-title">Mobile Applications</h3>
+                    <p class="service-description">Native and progressive web apps that deliver seamless mobile experiences.</p>
+                    <button class="service-btn">Learn More</button>
+                </div>
+                
+                <div class="service-card" data-service="seo">
+                    <div class="service-icon">📈</div>
+                    <h3 class="service-title">SEO & Marketing</h3>
+                    <p class="service-description">Digital marketing strategies that increase visibility and drive qualified traffic.</p>
+                    <button class="service-btn">Learn More</button>
+                </div>
+                
+                <div class="service-card" data-service="consulting">
+                    <div class="service-icon">💡</div>
+                    <h3 class="service-title">Digital Consulting</h3>
+                    <p class="service-description">Strategic guidance to help you navigate the digital landscape and achieve your goals.</p>
+                    <button class="service-btn">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section portfolio-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Portfolio</h2>
+                <p class="section-subtitle">Showcasing our best work and success stories</p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+            </div>
+            
+            <div class="portfolio-grid" id="portfolioGrid">
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                             alt="Corporate Website" 
+                             class="lazy-load"
+                             loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Corporate Website</h3>
+                                <p>Modern corporate site with CMS</p>
+                                <button class="portfolio-btn" onclick="openLightbox('https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg', 'Corporate Website')">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <img src="https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-of-information-147413.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                             alt="Social Media App" 
+                             class="lazy-load"
+                             loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Social Media App</h3>
+                                <p>Cross-platform mobile application</p>
+                                <button class="portfolio-btn" onclick="openLightbox('https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-of-information-147413.jpeg', 'Social Media App')">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="ecommerce">
+                    <div class="portfolio-image">
+                        <img src="https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                             alt="E-Commerce Platform" 
+                             class="lazy-load"
+                             loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>E-Commerce Platform</h3>
+                                <p>Full-featured online store</p>
+                                <button class="portfolio-btn" onclick="openLightbox('https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg', 'E-Commerce Platform')">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                             alt="Brand Identity" 
+                             class="lazy-load"
+                             loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Brand Identity</h3>
+                                <p>Complete brand redesign</p>
+                                <button class="portfolio-btn" onclick="openLightbox('https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg', 'Brand Identity')">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                             alt="Restaurant Website" 
+                             class="lazy-load"
+                             loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Restaurant Website</h3>
+                                <p>Interactive menu and reservations</p>
+                                <button class="portfolio-btn" onclick="openLightbox('https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg', 'Restaurant Website')">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <img src="https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                             alt="Fitness Tracker App" 
+                             class="lazy-load"
+                             loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Fitness Tracker App</h3>
+                                <p>Health and wellness mobile app</p>
+                                <button class="portfolio-btn" onclick="openLightbox('https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg', 'Fitness Tracker App')">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section blog-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Latest Insights</h2>
+                <p class="section-subtitle">Stay updated with the latest trends and best practices</p>
+            </div>
+            
+            <div class="blog-controls">
+                <div class="search-box">
+                    <input type="text" id="blogSearch" placeholder="Search articles..." class="search-input">
+                    <button class="search-btn">🔍</button>
+                </div>
+                <div class="blog-categories">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="web-dev">Web Dev</button>
+                    <button class="category-btn" data-category="design">Design</button>
+                    <button class="category-btn" data-category="trends">Trends</button>
+                </div>
+            </div>
+            
+            <div class="blog-grid" id="blogGrid">
+                <article class="blog-card" data-category="web-dev">
+                    <div class="blog-image">
+                        <img src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                             alt="Modern JavaScript Frameworks" 
+                             class="lazy-load"
+                             loading="lazy">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">March 15, 2024</span>
+                            <span class="blog-category">Web Development</span>
+                        </div>
+                        <h3 class="blog-title">The Future of JavaScript Frameworks in 2024</h3>
+                        <p class="blog-excerpt">Exploring the latest trends and innovations in modern JavaScript frameworks...</p>
+                        <button class="blog-read-more">Read More</button>
+                    </div>
+                </article>
+                
+                <article class="blog-card" data-category="design">
+                    <div class="blog-image">
+                        <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                             alt="UX Design Principles" 
+                             class="lazy-load"
+                             loading="lazy">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">March 10, 2024</span>
+                            <span class="blog-category">Design</span>
+                        </div>
+                        <h3 class="blog-title">10 Essential UX Design Principles for 2024</h3>
+                        <p class="blog-excerpt">Key principles that every designer should follow to create exceptional user experiences...</p>
+                        <button class="blog-read-more">Read More</button>
+                    </div>
+                </article>
+                
+                <article class="blog-card" data-category="trends">
+                    <div class="blog-image">
+                        <img src="https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-of-information-147413.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                             alt="Web Performance Optimization" 
+                             class="lazy-load"
+                             loading="lazy">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">March 5, 2024</span>
+                            <span class="blog-category">Performance</span>
+                        </div>
+                        <h3 class="blog-title">Web Performance Optimization: Core Vitals</h3>
+                        <p class="blog-excerpt">Master the art of web performance with these essential optimization techniques...</p>
+                        <button class="blog-read-more">Read More</button>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="blog-pagination">
+                <button class="pagination-btn" id="prevPage" disabled>Previous</button>
+                <span class="pagination-info">Page 1 of 3</span>
+                <button class="pagination-btn" id="nextPage">Next</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Ready to start your next project? Let's talk!</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>hello@pixelcraft.studio</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>San Francisco, CA</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <div class="contact-details">
+                            <h4>Hours</h4>
+                            <p>Mon - Fri: 9AM - 6PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required class="form-input">
+                        <label for="name" class="form-label">Full Name</label>
+                        <div class="form-error" id="nameError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required class="form-input">
+                        <label for="email" class="form-label">Email Address</label>
+                        <div class="form-error" id="emailError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" required class="form-input">
+                        <label for="subject" class="form-label">Subject</label>
+                        <div class="form-error" id="subjectError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="message" name="message" required class="form-textarea"></textarea>
+                        <label for="message" class="form-label">Message</label>
+                        <div class="form-error" id="messageError"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary form-submit">
+                        <span class="submit-text">Send Message</span>
+                        <span class="submit-loading" style="display: none;">Sending...</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-text">PixelCraft</span>
+                        <span class="logo-accent">Studio</span>
+                    </div>
+                    <p class="footer-description">Creating exceptional digital experiences that drive results and inspire audiences.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+                        <a href="#" class="social-link" aria-label="GitHub">👨‍💻</a>
+                        <a href="#" class="social-link" aria-label="Dribbble">🏀</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">UI/UX Design</a></li>
+                        <li><a href="#services">E-Commerce</a></li>
+                        <li><a href="#services">Mobile Apps</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p>Subscribe to get updates on our latest projects and insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" class="newsletter-input">
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 PixelCraft Studio. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        ↑
+    </button>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <img src="" alt="" class="lightbox-image" id="lightboxImage">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- Service Modal -->
+    <div class="modal" id="serviceModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Service details will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Success/Error Toast -->
+    <div class="toast" id="toast">
+        <div class="toast-message" id="toastMessage"></div>
+    </div>
+
+    <!-- Load JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/forms.js"></script>
+</body>
+</html>
