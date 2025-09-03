@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Learning Hub</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>5
+    <header class="header">
+      <nav class="nav">
+        <div class="nav-brand">
+          <h1>Learning Hub</h1>
+        </div>
+        <div class="nav-menu">
+          <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul class="nav-links">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#quiz" class="nav-link">Quiz</a></li>
+            <li><a href="#gallery" class="nav-link">Gallery</a></li>
+            <li><a href="#data" class="nav-link">Live Data</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Home Section -->
+      <section id="home" class="section hero">
+        <div class="container">
+          <div class="hero-content">
+            <h2 class="hero-title">QUIZ & FUN FACTS</h2>
+            <p class="hero-description">
+              Explore responsive design, interactive JavaScript, and API integration
+            </p>
+            <div class="hero-buttons">
+              <button class="btn btn-primary" onclick="scrollToSection('quiz')">Take Quiz</button>
+              <button class="btn btn-secondary" onclick="scrollToSection('gallery')">View Gallery</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quiz Section -->
+      <section id="quiz" class="section">
+        <div class="container">
+          <h2 class="section-title">Interactive JavaScript Quiz</h2>
+          <div class="quiz-container">
+            <div class="quiz-header">
+              <h3 id="question-title">Question 1 of 5</h3>
+              <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+              </div>
+            </div>
+            <div class="quiz-content">
+              <h3 id="question-text">Loading question...</h3>
+              <div class="quiz-options" id="quiz-options">
+                <!-- Options will be dynamically inserted -->
+              </div>
+              <div class="quiz-controls">
+                <button id="next-btn" class="btn btn-primary" disabled>Next Question</button>
+                <button id="restart-btn" class="btn btn-secondary" style="display: none;">Restart Quiz</button>
+              </div>
+              <div class="quiz-result" id="quiz-result" style="display: none;">
+                <h3>Quiz Complete!</h3>
+                <p id="final-score"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery Section -->
+      <section id="gallery" class="section">
+        <div class="container">
+          <h2 class="section-title">Interactive Image Carousel</h2>
+          <div class="carousel-container">
+            <div class="carousel">
+              <div class="carousel-track" id="carousel-track">
+                <!-- Images will be dynamically loaded -->
+              </div>
+              <button class="carousel-btn carousel-btn-prev" id="prev-btn">❮</button>
+              <button class="carousel-btn carousel-btn-next" id="next-btn-carousel">❯</button>
+            </div>
+            <div class="carousel-indicators" id="carousel-indicators">
+              <!-- Indicators will be dynamically created -->
+            </div>
+            <div class="carousel-info">
+              <h3 id="image-title">Loading images...</h3>
+              <p id="image-description">Please wait while we load the gallery</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- API Data Section -->
+      <section id="data" class="section">
+        <div class="container">
+          <h2 class="section-title">Live API Data</h2>
+          <div class="data-grid">
+        
+            
+            <div class="data-card">
+              <h3>Fun Fact</h3>
+              <div class="data-content" id="fact-content">
+                <p id="fact-text">Loading...</p>
+              </div>
+              <button class="btn btn-primary" onclick="fetchFact()">Get New Fact</button>
+            </div>
+            
+            <div class="data-card">
+              <h3>Random User</h3>
+              <div class="data-content" id="user-content">
+                <div class="user-info">
+                  <img id="user-avatar" src="" alt="User avatar" style="display: none;">
+                  <div>
+                    <p id="user-name">Loading...</p>
+                    <p id="user-email"></p>
+                    <p id="user-location"></p>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-primary" onclick="fetchUser()">Get New User</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 Interactive Learning Hub. Built with HTML, CSS, and JavaScript.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
